@@ -1,7 +1,10 @@
 from cgi import print_environ
+from cmath import rect
 import random
 import string
-import tkinter
+import pygame
+from pygame.locals import *
+import sys
 
 nb_lettres = 12
 nb_chiffres = 2
@@ -32,18 +35,19 @@ str = ''.join(mot_de_passe)
 
 
 
-def do_something():
-    print("Clicked")
+pygame.init()
 
-window = Tk()
+Size = 100
+blue = ( 100, 177, 255 )
 
-# On injecte un premier label dans la fenêtre
-label = Label(window, text="Hello Tk")
-label.pack()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            running = False
 
-# Puis, on injecte un bouton dans la fenêtre. Il est connecté à la
-# fonction do_something qui déclenchera au clic sur le bouton.
-button = Button(window, text="Push me !", command=do_something)
-button.pack()
+    ecran = pygame.display.set_mode((Size*6,Size*8))
+    ecran.fill((150,150,150))
+    pygame.draw.ellipse(ecran, blue, Rect(2*Size, 6*Size, 2*Size, Size))
 
-window.mainloop
+    pygame.display.update()
